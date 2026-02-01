@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be my Valentine?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffebee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Evita el scroll si el botón se va muy lejos */
+            text-align: center;
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-weight: bold;
+        }
+
+        #yesBtn {
+            background-color: #4caf50;
+            color: white;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+            position: absolute;
+            left: 50%;
+            transform: translateX(20px); /* Separación inicial */
+            white-space: nowrap;
+        }
+
+        .hint {
+            margin-top: 50px;
+            color: #757575;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Will you be my Valentine?</h1>
+
+    <div class="container">
+        <button id="yesBtn" onclick="celebrate()">YES!</button>
+        
+        <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">NO</button>
+    </div>
+
+    <p class="hint">"It seems hard to say no..."</p>
+
+    <script>
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            
+            // Calculamos posiciones aleatorias dentro del ancho y alto de la pantalla
+            // Restamos un margen para que no se salga de los bordes
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 20);
+
+            btn.style.position = 'fixed'; // Cambia a fixed para moverse por toda la pantalla
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+            btn.style.transform = 'none'; // Quitamos el centrado inicial
+        }
+
+        function celebrate() {
+            document.body.innerHTML = `
+                <div style="padding: 20px;">
+                    <h1 style="font-size: 3rem;">❤️ Yay! I knew it! ❤️</h1>
+                    <p style="font-size: 1.5rem;">See you on Valentine's Day!</p>
+                </div>
+            `;
+            // Podrías agregar confeti aquí si quisieras
+        }
+    </script>
+</body>
+</html>
